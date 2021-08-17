@@ -1,9 +1,9 @@
 <template lang="pug">
   #app
     input(v-model="name")
-    p {{ name }}
+    input(v-model="lastName")
 
-    a(:href="url") Link
+    p {{ fullName }}
 </template>
 
 <script>
@@ -13,7 +13,12 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       name: 'joedoe',
-      url: 'https://google.com'
+      lastName: 'smithers'
+    }
+  },
+  computed: {
+    fullName () {
+      return `${this.name} ${this.lastName}`
     }
   }
 }
