@@ -1,7 +1,12 @@
 <template lang="pug">
   #app
-    img(src="./assets/img/logo.png")
     h1 {{ msg }}
+    p {{ 1 + 1 }}
+    p {{ 'Hola' + 'Mundo' }}
+    p {{ person.name }}
+    p {{ person.name.toUpperCase() }}
+    p {{ JSON.stringify(person) }}
+    p {{ true ? 'true' : 'false' }}
 </template>
 
 <script>
@@ -9,7 +14,10 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      person: {
+        name: 'Joe'
+      }
     }
   }
 }
