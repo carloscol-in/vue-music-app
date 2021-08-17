@@ -21,20 +21,22 @@
 </template>
 
 <script>
-const tracks = [
-  {
-    name: 'Hysteria',
-    artist: 'Def Leppard'
-  },
-  {
-    name: 'Master of puppets',
-    artist: 'Metallica'
-  },
-  {
-    name: 'Something About Us',
-    artist: 'Daft Punk'
-  }
-]
+import TrackService from './services/track'
+
+// const tracks = [
+//   {
+//     name: 'Hysteria',
+//     artist: 'Def Leppard'
+//   },
+//   {
+//     name: 'Master of puppets',
+//     artist: 'Metallica'
+//   },
+//   {
+//     name: 'Something About Us',
+//     artist: 'Daft Punk'
+//   }
+// ]
 
 export default {
   name: 'app',
@@ -46,14 +48,13 @@ export default {
   },
   methods: {
     search () {
-      this.tracks = tracks
+      TrackService.search(this.searchQuery)
+        .then(res => {
+          console.log(res)
+        })
     }
   },
-  computed: {
-    searchMessage () {
-      return `Found ${tracks.length} songs.`
-    }
-  }
+  computed: {}
 }
 </script>
 
