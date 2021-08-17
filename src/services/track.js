@@ -10,3 +10,5 @@ TrackService.search = function (q) {
   })
     .then(res => res.data)
 }
+
+export default TrackService

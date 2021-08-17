@@ -10,33 +10,19 @@
           )
           a.button.is-info.is-large(@click="search") Search
           a.button.is-danger.is-large &times;
-          p
-            a {{ searchMessage }}
+      .container
+        p
+          a {{ searchMessage }}
 
       .container.results
-        .columns
-          .column(v-for="track in tracks")
-            p {{ track.name }}
-            p {{ track.artist }}
+        .rows
+          .row(v-for="track in tracks")
+            p {{ track.name }} - 
+            a(v-for="artist in track.artists", style="margin-right: 15px", :href="artist.external_urls.spotify") {{ artist.name }}
 </template>
 
 <script>
 import TrackService from './services/track'
-
-// const tracks = [
-//   {
-//     name: 'Hysteria',
-//     artist: 'Def Leppard'
-//   },
-//   {
-//     name: 'Master of puppets',
-//     artist: 'Metallica'
-//   },
-//   {
-//     name: 'Something About Us',
-//     artist: 'Daft Punk'
-//   }
-// ]
 
 export default {
   name: 'app',
@@ -48,13 +34,19 @@ export default {
   },
   methods: {
     search () {
+      if (!this.searchQuery) { return }
+
       TrackService.search(this.searchQuery)
         .then(res => {
-          console.log(res)
+          this.tracks = res.tracks.items
         })
     }
   },
-  computed: {}
+  computed: {
+    searchMessage () {
+      return `Found ${this.tracks.length} tracks`
+    }
+  }
 }
 </script>
 
