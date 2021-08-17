@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/img/wlogo.png">
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -16,6 +16,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
