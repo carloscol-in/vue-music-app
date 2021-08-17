@@ -1,12 +1,9 @@
 <template lang="pug">
   #app
-    h1 {{ msg }}
-    p {{ 1 + 1 }}
-    p {{ 'Hola' + 'Mundo' }}
-    p {{ person.name }}
-    p {{ person.name.toUpperCase() }}
-    p {{ JSON.stringify(person) }}
-    p {{ true ? 'true' : 'false' }}
+    p(v-show="showValue") {{ value }}
+
+    ul
+      li(v-for="i in items") {{ i }}
 </template>
 
 <script>
@@ -15,9 +12,10 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      person: {
-        name: 'Joe'
-      }
+      value: 'Value!',
+      showValue: true,
+
+      items: [1, 2, 3, 4]
     }
   }
 }
