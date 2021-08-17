@@ -1,9 +1,9 @@
 <template lang="pug">
   #app
-    p(v-show="showValue") {{ value }}
+    input(v-model="name")
+    p {{ name }}
 
-    ul
-      li(v-for="i in items") {{ i }}
+    a(:href="url") Link
 </template>
 
 <script>
@@ -12,10 +12,8 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      value: 'Value!',
-      showValue: true,
-
-      items: [1, 2, 3, 4]
+      name: 'joedoe',
+      url: 'https://google.com'
     }
   }
 }
