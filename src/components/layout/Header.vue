@@ -11,4 +11,15 @@
       .container.has-text-centered
         h1.title Music App
         h2.subtitle Now songs
+        ma-player
 </template>
+
+<script>
+import MaPlayer from '@/components/Player.vue'
+
+export default {
+  components: {
+    MaPlayer
+  }
+}
+</script>
