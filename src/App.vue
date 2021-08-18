@@ -1,5 +1,6 @@
 <template lang="pug">
   #app
+    ma-header
     section.section
       nav.nav.has-shadow
         .container
@@ -19,13 +20,21 @@
           .row(v-for="track in tracks")
             p {{ track.name }} - 
             a(v-for="artist in track.artists", style="margin-right: 15px", :href="artist.external_urls.spotify") {{ artist.name }}
+
+    ma-footer
 </template>
 
 <script>
 import TrackService from './services/track'
+import MaHeader from './components/layout/Header.vue'
+import MaFooter from './components/layout/Footer.vue'
 
 export default {
   name: 'app',
+  components: {
+    MaHeader,
+    MaFooter
+  },
   data () {
     return {
       searchQuery: '',
