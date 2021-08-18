@@ -32,6 +32,8 @@ export default {
   methods: {
     selectTrack () {
       this.$emit('select', this.track.id)
+
+      this.$bus.$emit('play-track', this.track)
     }
   }
 }
