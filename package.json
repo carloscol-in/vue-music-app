@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "bulma": "^0.9.3",
-    "vue": "^2.3.3",
-    "trae": "^1.4.2"
+    "trae": "^1.4.2",
+    "vue": "^2.3.3"
   },
   "browserslist": [
     "> 1%",
@@ -42,5 +42,10 @@
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
+  },
+  "editor.formatOnSave": true,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
   }
 }
