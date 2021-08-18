@@ -5,7 +5,7 @@
     ma-loader(v-show="isLoading")
 
     section.section(v-show="!isLoading")
-      nav.nav.has-shadow
+      nav.nav
         .container
           input.input.is-large(
             type="text",
@@ -15,13 +15,16 @@
           a.button.is-info.is-large(@click="search") Search
           a.button.is-danger.is-large &times;
       .container
-        p
-          a {{ searchMessage }}
+        p {{ searchMessage }}
 
       .container.results
         .columns.is-multiline
           .column.is-one-quarter(v-for="track in tracks")
-            ma-track(:track="track")
+            ma-track(
+              :class="{ 'is-active': track.id === selectedTrack }"
+              :track="track",
+              @select="playTrack"
+            )
 
     ma-footer
 </template>
@@ -49,7 +52,8 @@ export default {
     return {
       searchQuery: '',
       tracks: [],
-      isLoading: false
+      isLoading: false,
+      selectedTrack: ''
     }
   },
   methods: {
@@ -63,6 +67,9 @@ export default {
           this.tracks = res.tracks.items
           this.isLoading = false
         })
+    },
+    playTrack (id) {
+      this.selectedTrack = id
     }
   },
   computed: {
@@ -78,5 +85,9 @@ export default {
 
   .results {
     margin-top: 50px;
+  }
+
+  .is-active {
+    border: 3px #48c78e solid;
   }
 </style>
