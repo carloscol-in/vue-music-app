@@ -1,7 +1,10 @@
 <template lang="pug">
   #app
     ma-header
-    section.section
+
+    ma-loader(v-show="isLoading")
+
+    section.section(v-show="!isLoading")
       nav.nav.has-shadow
         .container
           input.input.is-large(
@@ -16,38 +19,49 @@
           a {{ searchMessage }}
 
       .container.results
-        .rows
-          .row(v-for="track in tracks")
-            p {{ track.name }} - 
-            a(v-for="artist in track.artists", style="margin-right: 15px", :href="artist.external_urls.spotify") {{ artist.name }}
+        .columns.is-multiline
+          .column.is-one-quarter(v-for="track in tracks")
+            ma-track(:track="track")
 
     ma-footer
 </template>
 
 <script>
-import TrackService from './services/track'
-import MaHeader from './components/layout/Header.vue'
-import MaFooter from './components/layout/Footer.vue'
+import TrackService from '@/services/track'
+
+// Global Components
+import MaLoader from '@/components/shared/Loader.vue'
+
+// Local components
+import MaHeader from '@/components/layout/Header.vue'
+import MaFooter from '@/components/layout/Footer.vue'
+import MaTrack from '@/components/Track.vue'
 
 export default {
   name: 'app',
   components: {
     MaHeader,
-    MaFooter
+    MaFooter,
+    MaTrack,
+    MaLoader
   },
   data () {
     return {
       searchQuery: '',
-      tracks: []
+      tracks: [],
+      isLoading: false
     }
   },
   methods: {
     search () {
       if (!this.searchQuery) { return }
 
+      this.isLoading = true
+
       TrackService.search(this.searchQuery)
         .then(res => {
           this.tracks = res.tracks.items
+          this.isLoading = false
         })
     }
   },
