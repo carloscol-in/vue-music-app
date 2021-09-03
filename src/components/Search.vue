@@ -23,6 +23,7 @@ main
       .columns.is-multiline
         .column.is-one-quarter(v-for='track in tracks')
           ma-track(
+            v-blur='track.preview_url',
             :class='{ "is-active": track.id === selectedTrack }',
             :track='track',
             @select='playTrack'
