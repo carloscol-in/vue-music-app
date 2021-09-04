@@ -11,21 +11,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  data() {
-    return {
-      track: {},
-    };
-  },
-  created() {
-    this.$bus.$on('play-track', (track) => {
-      this.track = track;
-    });
-  },
   computed: {
-    duration() {
-      return `${this.track.duration_ms}`;
-    },
+    ...mapState(['track']),
   },
 };
 </script>
