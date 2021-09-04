@@ -13,6 +13,7 @@ import msToTime from '@/filters/ms-to-time'
 import blur from '@/directives/blur'
 
 import routes from '@/routes'
+import store from '@/store'
 import EventBus from '@/plugins/event-bus'
 
 Vue.use(VueRouter)
@@ -32,5 +33,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   render: h => h(App),
-  router
+  router,
+  store,
 })
