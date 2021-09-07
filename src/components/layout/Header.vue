@@ -7,8 +7,10 @@ section.hero.is-success
           .nav-item
             strong Music App
         .nav-right.nav-menu
-          router-link.nav-item(:to='{ name: "search" }') Search
-          router-link.nav-item(:to='{ name: "about" }') About us
+          a.nav-item(@click='selectLang("en")') 🇺🇸
+          a.nav-item(@click='selectLang("es")') 🇲🇽
+          router-link.nav-item(:to='{ name: "search" }') {{ $t("search") }}
+          router-link.nav-item(:to='{ name: "about" }') {{ $t("about") }}
 
   .hero-body
     .container.has-text-centered
@@ -23,6 +25,12 @@ import MaPlayer from '@/components/Player.vue';
 export default {
   components: {
     MaPlayer,
+  },
+
+  methods: {
+    selectLang(lang) {
+      this.$i18n.locale = lang;
+    },
   },
 };
 </script>
