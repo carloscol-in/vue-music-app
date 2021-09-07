@@ -12,6 +12,7 @@ import msToTime from '@/filters/ms-to-time'
  */
 import blur from '@/directives/blur'
 
+import i18n from '@/i18n'
 import routes from '@/routes'
 import store from '@/store'
 import EventBus from '@/plugins/event-bus'
@@ -35,4 +36,5 @@ new Vue({
   render: h => h(App),
   router,
   store,
+  i18n,
 })
